@@ -7,23 +7,23 @@ public class Rocket : MonoBehaviour
     private Rigidbody _rb;
     private void ProcessInput()
     {
-        if (Input.GetKey(KeyCode.Space)) // can thrust while rotating
+        if (Input.GetKey(KeyCode.Space))
         {
-            
+            _rb.AddRelativeForce(Vector3.up);  
         }
         if (Input.GetKey(KeyCode.A))
         {
-            
+            print("Rotating left");
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            
+            print("Rotating right");
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        _rb = _rb.GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
