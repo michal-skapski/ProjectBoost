@@ -9,27 +9,47 @@ public class Rocket : MonoBehaviour
     private int _zeroVal = 0;
     private int _threeVal = 3;
 
+    private void AudioPlay()
+    {
+        _audioSource.Play();
+    }
     private void ResetPosition()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             transform.position = new Vector3(_zeroVal, _threeVal, _zeroVal);
             transform.rotation = Quaternion.identity;
+            _audioSource.Stop();
         }
     }
-    private void ProcessInput()
+    private void Thrust()
     {
-
         if (Input.GetKey(KeyCode.Space))
         {
-            _rb.AddRelativeForce(Vector3.up);  
+            if (!_audioSource.isPlaying) // so it does not layer
+            {
+                AudioPlay();
+            }
+            _rb.AddRelativeForce(Vector3.up);
         }
+    }
+    private void Rotation()
+    {
         if (Input.GetKey(KeyCode.A))
         {
+            if (!_audioSource.isPlaying) // so it does not layer
+            {
+                AudioPlay();
+            }
             transform.Rotate(Vector3.forward);
+
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            if (!_audioSource.isPlaying) // so it does not layer
+            {
+                AudioPlay();
+            }
             transform.Rotate(Vector3.back);
         }
     }
@@ -43,6 +63,7 @@ public class Rocket : MonoBehaviour
     private void Update()
     {
         ResetPosition();
-        ProcessInput();
+        Thrust();
+        Rotation();
     }
 }
