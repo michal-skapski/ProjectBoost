@@ -17,9 +17,11 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
+            _rb.freezeRotation = true;
             transform.position = new Vector3(_zeroVal, _threeVal, _zeroVal);
             transform.rotation = Quaternion.identity;
             _audioSource.Stop();
+            _rb.freezeRotation = false;
         }
     }
     private void Thrust()
@@ -33,8 +35,9 @@ public class Rocket : MonoBehaviour
             _rb.AddRelativeForce(Vector3.up);
         }
     }
-    private void Rotation()
+    private void Rotate()
     {
+        _rb.freezeRotation = true;
         if (Input.GetKey(KeyCode.A))
         {
             if (!_audioSource.isPlaying) // so it does not layer
@@ -52,6 +55,7 @@ public class Rocket : MonoBehaviour
             }
             transform.Rotate(Vector3.back);
         }
+        _rb.freezeRotation = false;
     }
 
     private void Awake()
@@ -64,6 +68,6 @@ public class Rocket : MonoBehaviour
     {
         ResetPosition();
         Thrust();
-        Rotation();
+        Rotate();
     }
 }
