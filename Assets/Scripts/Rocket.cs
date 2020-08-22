@@ -8,11 +8,9 @@ public class Rocket : MonoBehaviour
     private Rigidbody _rb;
     private int _zeroVal = 0;
     private int _threeVal = 3;
+    [SerializeField] private float _rotationforce = 100f;
+    private float _rotationThisFrame;
 
-    private void AudioPlay()
-    {
-        _audioSource.Play();
-    }
     private void ResetPosition()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -30,30 +28,39 @@ public class Rocket : MonoBehaviour
         {
             if (!_audioSource.isPlaying) // so it does not layer
             {
-                AudioPlay();
+                _audioSource.Play();
             }
             _rb.AddRelativeForce(Vector3.up);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            _audioSource.Stop();
         }
     }
     private void Rotate()
     {
+        _rotationThisFrame = _rotationforce * Time.deltaTime;
         _rb.freezeRotation = true;
         if (Input.GetKey(KeyCode.A))
         {
             if (!_audioSource.isPlaying) // so it does not layer
             {
-                AudioPlay();
+                _audioSource.Play();
             }
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward*_rotationThisFrame);
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
             if (!_audioSource.isPlaying) // so it does not layer
             {
-                AudioPlay();
+                _audioSource.Play();
             }
-            transform.Rotate(Vector3.back);
+            transform.Rotate(-Vector3.forward * _rotationThisFrame);
+        }        
+        else if(Input.GetKeyUp(KeyCode.A)||Input.GetKeyUp(KeyCode.D))
+        {
+            _audioSource.Stop();
         }
         _rb.freezeRotation = false;
     }
