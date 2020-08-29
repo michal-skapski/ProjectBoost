@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     private Rigidbody _rb;
     private int _zeroVal = 0;
     private int _threeVal = 3;
-    [SerializeField] private float _rotationforce = 100f;
+    [SerializeField] private float _rcsThrust = 100f;
     private float _rotationThisFrame;
 
     private void ResetPosition()
@@ -39,7 +39,7 @@ public class Rocket : MonoBehaviour
     }
     private void Rotate()
     {
-        _rotationThisFrame = _rotationforce * Time.deltaTime;
+        _rotationThisFrame = _rcsThrust * Time.deltaTime;
         _rb.freezeRotation = true;
         if (Input.GetKey(KeyCode.A))
         {
