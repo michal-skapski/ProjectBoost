@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+
     private AudioSource _audioSource;
     private Rigidbody _rb;
     private int _zeroVal = 0;
@@ -65,6 +66,16 @@ public class Rocket : MonoBehaviour
         _rb.freezeRotation = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly": Debug.Log("OK"); break; // to do 
+            case "FinishLine": break; // to do 
+            case "FuelPlus": Debug.Log("Fueld up"); break; // extra to do 
+            default: Debug.Log("Dead"); break; // to do kill the player
+        }
+    }
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -78,3 +89,13 @@ public class Rocket : MonoBehaviour
         Rotate();
     }
 }
+
+
+
+
+/*
+private void OnTriggerEnter(Collider other) // this is gona make when you enter something with a trigger in the collider component 
+{
+    Debug.Log("A trigger had been detected");
+}
+*/
