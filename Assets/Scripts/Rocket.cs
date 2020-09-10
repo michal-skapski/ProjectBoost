@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-
+    [SerializeField] private Transform _launchPadPos;
     private AudioSource _audioSource;
     private Rigidbody _rb;
     private int _zeroVal = 0;
     private int _threeVal = 3;
     [SerializeField] private float _rcsThrust = 100f;
     private float _rotationThisFrame;
+    private int _xLauchPadPos = -17;
 
     private void ResetPosition()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            _rb.freezeRotation = true;
-            transform.position = new Vector3(_zeroVal, _threeVal, _zeroVal);
-            transform.rotation = Quaternion.identity;
-            _audioSource.Stop();
-            _rb.freezeRotation = false;
-        }
+        _rb.freezeRotation = true;
+        transform.position = new Vector3(_xLauchPadPos, _threeVal, _zeroVal);
+        transform.rotation = Quaternion.identity;
+        _audioSource.Stop();
+        _rb.freezeRotation = false;
     }
     private void Thrust()
     {
@@ -66,14 +64,14 @@ public class Rocket : MonoBehaviour
         _rb.freezeRotation = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // this is calling when another objects collider / rigidbody will touch another object
     {
         switch (collision.gameObject.tag)
         {
             case "Friendly": Debug.Log("OK"); break; // to do 
             case "FinishLine": break; // to do 
             case "FuelPlus": Debug.Log("Fueld up"); break; // extra to do 
-            default: Debug.Log("Dead"); break; // to do kill the player
+            default: Debug.Log("Dead"); ResetPosition(); break; // to do kill the player
         }
     }
     private void Awake()
@@ -84,7 +82,10 @@ public class Rocket : MonoBehaviour
 
     private void Update()
     {
-        ResetPosition();
+        if (Input.GetKeyDown(KeyCode.Alpha0)||Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            ResetPosition();
+        }
         Thrust();
         Rotate();
     }
