@@ -13,6 +13,7 @@ public class Rocket : MonoBehaviour
     private float _rotationThisFrame;
     private int _xLauchPadPos = -17;
 
+    /*
     private void ResetPosition()
     {
         _rb.freezeRotation = true;
@@ -21,6 +22,7 @@ public class Rocket : MonoBehaviour
         _audioSource.Stop();
         _rb.freezeRotation = false;
     }
+    */
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -71,7 +73,7 @@ public class Rocket : MonoBehaviour
             case "Friendly": Debug.Log("OK"); break; // to do 
             case "FinishLine": break; // to do 
             case "FuelPlus": Debug.Log("Fueld up"); break; // extra to do 
-            default: Debug.Log("Dead"); ResetPosition(); break; // to do kill the player
+            default: Debug.Log("Dead"); break; // to do kill the player (maybe use the reset position function)
         }
     }
     private void Awake()
@@ -84,7 +86,7 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0)||Input.GetKeyDown(KeyCode.Keypad0))
         {
-            ResetPosition();
+           // ResetPosition();
         }
         Thrust();
         Rotate();
