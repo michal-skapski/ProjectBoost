@@ -394,7 +394,7 @@ Transform:
   m_LocalScale: {x: 0.48257, y: 0.48257, z: 0.48257}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1707583863
 GameObject:
@@ -488,6 +488,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 145.493, y: -218.799, z: -186.719}
+<<<<<<< HEAD
 --- !u!1 &2047758216
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,10 +577,21 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047758216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
+  m_LocalRotation: {x: 0.07729314, y: -0.07252481, z: -0.76886064, w: -0.63057065}
+  m_LocalPosition: {x: -0.016800001, y: 0.8092, z: -8.3455}
+=======
+  m_LocalRotation: {x: -0, y: -0, z: -0.49530149, w: 0.8687211}
   m_LocalPosition: {x: -0.0168, y: 0.8092, z: -8.3455}
+>>>>>>> conflictstest
   m_LocalScale: {x: 0.45911825, y: 0.6184102, z: 0.42072034}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+  m_LocalEulerAnglesHint: {x: -12.064, y: -1.605, z: -258.543}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -59.379}
+>>>>>>> conflictstest
+=======
+>>>>>>> conflictstest
