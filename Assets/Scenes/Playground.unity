@@ -394,7 +394,7 @@ Transform:
   m_LocalScale: {x: 0.48257, y: 0.48257, z: 0.48257}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1707583863
 GameObject:
@@ -488,6 +488,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 145.493, y: -218.799, z: -186.719}
+<<<<<<< HEAD
 --- !u!1 &2047758216
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,4 +592,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: -12.064, y: -1.605, z: -258.543}
 =======
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -59.379}
+>>>>>>> conflictstest
+=======
 >>>>>>> conflictstest
