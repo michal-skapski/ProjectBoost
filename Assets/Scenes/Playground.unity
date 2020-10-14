@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 2047758218}
   - component: {fileID: 2047758217}
   m_Layer: 0
-  m_Name: Mu
+  m_Name: Muk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
