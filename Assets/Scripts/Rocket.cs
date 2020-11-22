@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] private float _rcsThrust = 100f;
     private float _rotationThisFrame;
     private int _xLauchPadPos = -17;
-
+    private enum State{ Alive, Dying, Transcending};
+    private State _state = State.Alive;
+    private string _loadStartSceneMethod = "LoadStartScene", _loadNextSceneMethod = "LoadNextScene";
+    private float _loadNextSceneTime=1f, _loadStartSceneTime = 0.5f;
     /*
     private void ResetPosition()
     {
@@ -71,11 +75,28 @@ public class Rocket : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Friendly": Debug.Log("OK"); break; // to do 
-            case "FinishLine": break; // to do 
+            case "FinishLine":
+                Invoke(_loadNextSceneMethod, _loadNextSceneTime);
+                _state = State.Transcending;
+            break; 
             case "FuelPlus": Debug.Log("Fueld up"); break; // extra to do 
-            default: Debug.Log("Dead"); break; // to do kill the player (maybe use the reset position function)
+            default:
+                _state = State.Dying;
+                Invoke(_loadStartSceneMethod,_loadStartSceneTime);
+                break; // to do kill the player (maybe use the reset position function)
         }
     }
+
+    private void LoadStartScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -88,8 +109,11 @@ public class Rocket : MonoBehaviour
         {
            // ResetPosition();
         }
-        Thrust();
-        Rotate();
+        if(_state != State.Dying)
+        {
+            Thrust();
+            Rotate();
+        }
     }
 }
 
